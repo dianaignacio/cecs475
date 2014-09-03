@@ -23,22 +23,46 @@ public class TicTacToe
                 
         void GetPlayer1Move()
         {
-            Console.WriteLine("Player 1's turn");
             int rowVal = 0;
             int columnVal = 0;
-            rowVal = MoveCheck("Player 1: Enter row ( 0 <= row < 3: ", 0, 3);
-            columnVal = MoveCheck("Player 1: Enter column ( 0 <= column < 3: ", 0, 3);
+            bool isNotOccupied = false;
+            Console.WriteLine("\nPlayer 1's turn");
+            while (!isNotOccupied)
+            {
+                rowVal = MoveCheck("Player 1: Enter row ( 0 <= row < 3: ", 0, 3);
+                columnVal = MoveCheck("Player 1: Enter column ( 0 <= column < 3: ", 0, 3);
+                if (((board[rowVal, columnVal] == 1) || board[rowVal, columnVal] == 2))
+                {
+                    Console.WriteLine("\nInvalid entry. Please retry.");
+                }
+                else
+                {
+                    isNotOccupied = true;
+                }
+            }
             board[rowVal, columnVal] = 1;
-            PlayMove(board);
+            PlayMove(board);            
         }
 
         void GetPlayer2Move()
         {
-            Console.WriteLine("Player 2's turn");
             int rowVal = 0;
             int columnVal = 0;
-            rowVal = MoveCheck("Player 2: Enter row ( 0 <= row < 3: ", 0, 3);
-            columnVal = MoveCheck("Player 2: Enter column ( 0 <= column < 3: ", 0, 3);
+            bool isNotOccupied = false;
+            Console.WriteLine("\nPlayer 2's turn");
+            while (!isNotOccupied)
+            {
+                rowVal = MoveCheck("Player 2: Enter row ( 0 <= row < 3: ", 0, 3);
+                columnVal = MoveCheck("Player 2: Enter column ( 0 <= column < 3: ", 0, 3);
+                if (((board[rowVal, columnVal] == 1) || board[rowVal, columnVal] == 2))
+                {
+                    Console.WriteLine("\nInvalid entry. Please retry.");
+                }
+                else
+                {
+                    isNotOccupied = true;
+                }
+            }
             board[rowVal, columnVal] = 2;
             PlayMove(board);
         }
@@ -50,12 +74,13 @@ public class TicTacToe
             int number;
             while (!(int.TryParse(line, out number) && min <= number && number < max))
             {
-                Console.Write("\nInvalid entry. Please retry : ");
+                Console.Write("\nInvalid entry. Please retry: ");
                 line = Console.ReadLine();
             }
             return number;
         }
 
+        // PlayMove method updates board with player moves
         void PlayMove(int[,] arr)
         {
             for (int x = 0; x < BOARDSIZE; x++)
@@ -74,7 +99,7 @@ public class TicTacToe
                     }
                 }
                 Console.WriteLine("|");
-            }  // End for-loop
+            }
             Console.WriteLine("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _|");
         }
         
@@ -87,6 +112,7 @@ public class TicTacToe
                 GetPlayer2Move();
             }
             PrintBoard();
+            // TODO: Update conditions to win game
             Console.WriteLine("Player has won!");
         }
         
