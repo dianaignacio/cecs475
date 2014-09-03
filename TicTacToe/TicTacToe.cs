@@ -8,19 +8,19 @@ public class TicTacToe
 
         public void PrintBoard()
         {
-                for (int i = 0; i < BOARDSIZE; i++)
+                for (int x = 0; x < 3; x++)
                 {
-                    Console.WriteLine(" _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
-                    Console.WriteLine("|         |         |         |");
-                    for (int j = 0; j < BOARDSIZE; j++)
-                    {
-                        Console.WriteLine
-                          ("|       ", board[i, j], "       |");
-                    }
-                    Console.WriteLine("|");
+                     Console.WriteLine(" _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+                     Console.WriteLine("|         |         |         |");
+                     for (int y = 0; y < 3; y++)
+                     {
+                        Console.Write("|         ", board[x, y]);
+                     }
+                     Console.WriteLine("|");
                 }
-                Console.WriteLine("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _|");
+                  Console.WriteLine("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _|");
         }
+        
         
         void GetPlayer1Move()
         {
@@ -61,7 +61,7 @@ public class TicTacToe
             //board[move.Item1, move.Item2] = players[playerIndex];
         }
         
-        internal void Play()
+        public void Play()
         {
             bool endOfGame = false;
             while (!endOfGame)
