@@ -1,40 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TicTacToe
-{
-    public class TicTacToe
+public class TicTacToe
     {
         private const int BOARDSIZE = 3; // size of the board
-        private int[,] board = new int[,] { { }, { }, { }, 
-                                            { }, { }, { },
-                                            { }, { }, { } };// board representation
+        private int[,] board = new int[BOARDSIZE,BOARDSIZE];// board representation
+        private int[] players = { 1, 2 };
 
-        public int this[int row, int column]
+        public void PrintBoard()
         {
-            get { return board[row, column]; }
-            set { board[row, column] = value; }
-        }
-
-        internal void PrintBoard()
-        {
-            for (int y = 0; y < board.Length; ++y)
-            {
-                for (int x = 0; x < board.Length; ++x)
+                for (int i = 0; i < BOARDSIZE; i++)
                 {
-                    Console.Write(board[y, x]);
-                    if (x < board.Length-1)
+                    Console.WriteLine(" _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ");
+                    Console.WriteLine("|         |         |         |");
+                    for (int j = 0; j < BOARDSIZE; j++)
                     {
-                        Console.Write('|');
+                        Console.WriteLine
+                          ("|       ", board[i, j], "       |");
                     }
+                    Console.WriteLine("|");
                 }
-                Console.Write('\n');
-            }
+                Console.WriteLine("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _|");
         }
-
+        
         void GetPlayer1Move()
         {
             Console.WriteLine("Player 1's turn");
@@ -66,21 +53,25 @@ namespace TicTacToe
             return number;
         }
 
+        void PlayMove(int[,] arr, int playerIndex)
+        {
+            PrintBoard();
+            Console.WriteLine("Player {0}'s turn!", playerIndex + 1);
+            //var move = playerMove();
+            //board[move.Item1, move.Item2] = players[playerIndex];
+        }
+        
         internal void Play()
         {
-            GetPlayer1Move();
-            GetPlayer2Move();
+            bool endOfGame = false;
+            while (!endOfGame)
+            {
+                GetPlayer1Move();
+                PrintBoard();
+                GetPlayer2Move();
+            }
+            PrintBoard();
+            Console.WriteLine("Player has won!");
         }
         
     }   // end TicTacToe class
-
-    public class TicTacToeGame
-    {
-        static void Main()
-        {
-            TicTacToe game = new TicTacToe();
-            game.PrintBoard();
-            game.Play();
-        }
-    }
-}
