@@ -4,6 +4,7 @@ public class TicTacToe
     {
         private const int BOARDSIZE = 3; // size of the board
         private int[,] board = new int[BOARDSIZE,BOARDSIZE];// board representation
+        int playCount = 0;
 
         public void PrintBoard()
         {
@@ -131,7 +132,6 @@ public class TicTacToe
                  (board[0, 0] == 2 && board[1, 1] == 2 && board[2, 2] == 2) || // Left diagonal win   
                  (board[0, 2] == 2 && board[1, 1] == 2 && board[2, 0] == 2))   // Right diagonal win
                 {
-                    Console.WriteLine("Player 2 has won!");
                     return (p2win = true);
                 }
             return p2win;
@@ -147,8 +147,25 @@ public class TicTacToe
                     Console.WriteLine("Player 1 has won!");
                     break;
                 }
-                GetPlayer2Move(); 
+                if ((playCount == BOARDSIZE + 1) &&
+                ((player2win() == false) && (player1win() == false)))
+                {
+                    Console.WriteLine("Game is a draw.");
+                    break;
+                }
+                GetPlayer2Move();
+                if (player2win() == true)
+                {
+                    Console.WriteLine("Player 2 has won!");
+                    break;
+                }
+                if ((playCount == BOARDSIZE + 1) &&
+                ((player2win() == false) && (player1win() == false)))
+                {
+                    Console.WriteLine("Game is a draw.");
+                    break;
+                }
+                playCount++;
             }
-        }
-        
+        }        
     }   // end TicTacToe class
