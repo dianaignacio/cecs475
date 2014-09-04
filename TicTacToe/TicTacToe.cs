@@ -4,7 +4,6 @@ public class TicTacToe
     {
         private const int BOARDSIZE = 3; // size of the board
         private int[,] board = new int[BOARDSIZE,BOARDSIZE];// board representation
-        private int[] players = { 1, 2 };
 
         public void PrintBoard()
         {
@@ -103,17 +102,53 @@ public class TicTacToe
             Console.WriteLine("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _|");
         }
         
+        bool player1win()
+        {
+            bool p1win = false;
+            if ((board[0, 0] == 1 && board[0, 1] == 1 && board[0, 2] == 1) || // 1st Horizontal win
+             (board[1, 0] == 1 && board[1, 1] == 1 && board[1, 2] == 1) || // 2nd Horizontal win
+             (board[2, 0] == 1 && board[2, 1] == 1 && board[2, 2] == 1) || // 3rd Horizontal win
+             (board[0, 0] == 1 && board[1, 0] == 1 && board[2, 0] == 1) || // 1st Vertical win
+             (board[0, 1] == 1 && board[1, 1] == 1 && board[2, 1] == 1) || // 2nd Vertical win
+             (board[0, 2] == 1 && board[1, 2] == 1 && board[2, 2] == 1) || // 3rd Vertical win
+             (board[0, 0] == 1 && board[1, 1] == 1 && board[2, 2] == 1) || // Left diagonal win   
+             (board[0, 2] == 1 && board[1, 1] == 1 && board[2, 0] == 1))   // Right diagonal win
+            {
+                return (p1win = true);
+            }
+            return p1win;
+        }
+
+        bool player2win()
+        {
+            bool p2win = false;
+            if ((board[0, 0] == 2 && board[0, 1] == 2 && board[0, 2] == 2) || // 1st Horizontal win
+                 (board[1, 0] == 2 && board[1, 1] == 2 && board[1, 2] == 2) || // 2nd Horizontal win
+                 (board[2, 0] == 2 && board[2, 1] == 2 && board[2, 2] == 2) || // 3rd Horizontal win
+                 (board[0, 0] == 2 && board[1, 0] == 2 && board[2, 0] == 2) || // 1st Vertical win
+                 (board[0, 1] == 2 && board[1, 1] == 2 && board[2, 1] == 2) || // 2nd Vertical win
+                 (board[0, 2] == 2 && board[1, 2] == 2 && board[2, 2] == 2) || // 3rd Vertical win
+                 (board[0, 0] == 2 && board[1, 1] == 2 && board[2, 2] == 2) || // Left diagonal win   
+                 (board[0, 2] == 2 && board[1, 1] == 2 && board[2, 0] == 2))   // Right diagonal win
+                {
+                    Console.WriteLine("Player 2 has won!");
+                    return (p2win = true);
+                }
+            return p2win;
+        }
+    
         public void Play()
         {
-            bool endOfGame = false;
-            while (!endOfGame)
+            while ((!player1win()) && (!player2win()))
             {
                 GetPlayer1Move();
-                GetPlayer2Move();
+                if (player1win() == true)
+                {
+                    Console.WriteLine("Player 1 has won!");
+                    break;
+                }
+                GetPlayer2Move(); 
             }
-            PrintBoard();
-            // TODO: Update conditions to win game
-            Console.WriteLine("Player has won!");
         }
         
     }   // end TicTacToe class
