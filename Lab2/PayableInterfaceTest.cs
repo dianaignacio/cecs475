@@ -1,10 +1,10 @@
 ﻿// Fig. 12.15: PayableInterfaceTest.cs
 // Tests interface IPayable with disparate classes.
 using System;
-namespace Lab2
+using Lab2;
+
+public class PayableInterfaceTest
 {
-    public class PayableInterfaceTest
-    {
         public static void Main(string[] args)
         {
             int menuOption;
@@ -65,7 +65,7 @@ namespace Lab2
             Console.WriteLine("\nPlease select a sorting option");
             Console.WriteLine("1. Sort by social security number in ascending order");
             Console.WriteLine("2. Sort by last name in descending order");
-            Console.WriteLine("3. Sort by pay amount in ascending  order");
+            Console.WriteLine("3. Sort by pay amount in ascending order");
             Console.WriteLine("4. Sort by pay amount in descending order");
             Console.WriteLine("5. Exit the program.");
 
@@ -91,14 +91,13 @@ namespace Lab2
         {
             Employee[] employeeArray = new Employee[8];
             for (int i = 0; i < people.Length; i++)
-            {
+            {  
                 employeeArray[i] = (Employee)people[i];
             }
-
-            //BubbleSort.sort(employeeArray, Employee.CompareStringAscending);
+            BubbleSort.sort(employeeArray,BubbleSort.compareEmployeeSsnAscending);
             foreach (var person in employeeArray)
             {
-                Console.WriteLine(person + "\n");
+                Console.WriteLine(person);
             }
         } // end sortSocialSecurityNumberAscend
 
@@ -107,30 +106,29 @@ namespace Lab2
             Array.Sort(people);
             Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
 
-            foreach (var currentPayable in people)
-                Console.WriteLine(currentPayable);
+            foreach (var person in people)
+                Console.WriteLine(person);
         }
 
         public static void sortPayAmountAscending(IPayable[] people)
         {
             Array.Sort(people, Employee.sortPayAmountAscending());
-            Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
+            Console.WriteLine("\nArray - Sorted by Pay Amount (Ascending - IComparable)\n");
 
-            foreach (var currentPayable in people)
-                Console.WriteLine(currentPayable);
+            foreach (var person in people)
+                Console.WriteLine(person);
         }
 
         public static void sortPayAmountDescending(IPayable[] people)
         {
             Array.Sort(people, Employee.sortPayAmountDescending());
-            Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
+            Console.WriteLine("\nArray - Sorted by Pay Amount (Descending - IComparable)\n");
 
-            foreach (var currentPayable in people)
-                Console.WriteLine(currentPayable);
+            foreach (var person in people)
+                Console.WriteLine(person);
         }
 
     } // end class PayableInterfaceTest
-}
 /**************************************************************************
  * (C) Copyright 1992-2009 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *

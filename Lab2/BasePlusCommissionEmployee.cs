@@ -40,7 +40,7 @@ public class BasePlusCommissionEmployee: CommissionEmployee
         // return string representation of BasePlusCommissionEmployee object
         public override string ToString()
         {
-            return string.Format("base-salaried {0}; base salary: {1:C}",
+            return string.Format("base-salaried {0} base salary: {1:C}",
                base.ToString(), BaseSalary);
         } // end method ToString                                            
     } // end class BasePlusCommissionEmployee

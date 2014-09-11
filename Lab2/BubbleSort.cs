@@ -1,47 +1,44 @@
 ﻿using System;
-
 namespace Lab2
 {
-    public delegate bool compareEmployeeSSNDescending(Object o1, Object o2);
+    public delegate bool ComparisonHandler(Employee e1, Employee e2);
     class BubbleSort
     {
-        public static void sort(Employee[] a, compareEmployeeSSNDescending e)
+        public static void sort(Employee[] a, ComparisonHandler e)
 		{
             int i;
             int j;
-            Employee temp;
+            object temp;
 
             for(i = a.Length - 1; i >= 0; i--)
             {
                 for(j = 1; j <= i; j++)
                 {
-                    if (compareEmployeeSSNDescending(a[j-1], a[j]))
+                    if (e(a[j-1], a[j]))
                     {
-                        temp = (Employee)a[j - 1];
+                        temp = a[j - 1];
                         a[j - 1] = a[j];
-                        a[j] = temp;
+                        a[j] = (Employee)temp;
                     }
                 }
             }
 		}
 
-        public static bool greaterThan(int first, int second)
+        public static bool compareEmployeeSsnAscending(Employee p1, Employee p2)
         {
+            int first, second;
+            first = TryToParse(p1.SocialSecurityNumber);
+            second = TryToParse(p2.SocialSecurityNumber);
             return first > second;
         }
 
-        public static bool alphabeticalGreaterThan(int first, int second)
+        private static int TryToParse(string value)
         {
-            if ((first.ToString()).CompareTo(second.ToString()) < 0)
-                return true;
-
-            else
-                return false;
+            int number;
+            value = value.Replace("-", "");
+            bool result = Int32.TryParse(value, out number);
+            return number;
         }
 
-        private static bool compareEmployeeSSNDescending(object p1, object p2)
-        {
-            return true;
-        }
     }
 }

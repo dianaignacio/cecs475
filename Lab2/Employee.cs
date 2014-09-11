@@ -6,14 +6,6 @@ using System.Collections;
     public abstract class Employee : IPayable, IComparable
     {
 
-        public static bool compareSSNDescending(Object o1, Object o2)
-        {
-            bool ascendingString = false;
-
-
-            return ascendingString;
-        }
-
         // read-only property that gets employee's first name
         public string FirstName { get; private set; }
 
@@ -46,33 +38,17 @@ using System.Collections;
         // return string representation of Employee object, using properties
         public override string ToString()
         {
-            return string.Format("{0} {1}\nsocial security number: {2}\n",
+            return string.Format("{0} {1}\nsocial security number: {2}",
                FirstName, LastName, SocialSecurityNumber);
         } // end method ToString
 
         // abstract method overridden by derived classes
         public abstract decimal GetPaymentAmount(); // no implementation here
 
-        // Implement IComparable CompareTo to provide default sort order.
         int IComparable.CompareTo(object obj)
         {
-            Employee compared = (Employee)obj;
-
-            if (compared.LastName.Equals(this.LastName))
-            {   // If we are equal, check the first name...
-                if (this.FirstName.Equals(compared.FirstName))
-                {   // If we are equal again, verify the SSN...
-                    return String.Compare(this.SocialSecurityNumber, compared.SocialSecurityNumber);
-                }
-                else
-                {
-                    return String.Compare(this.FirstName, compared.FirstName);
-                }
-            }
-            else
-            {   // Our base case.
-                return String.Compare(compared.LastName, this.LastName);
-            }
+            Employee c = (Employee)obj;
+            return String.Compare(this.LastName, c.LastName);
         }
 
         private class sortPayAmountAscendingHelper : IComparer

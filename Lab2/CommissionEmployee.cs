@@ -60,7 +60,7 @@ using System;
         {
             return string.Format("{0}: {1}\n{2}: {3:C}\n{4}: {5:F2}",
                "commission employee", base.ToString(),
-               "gross sales", GrossSales, "commission rate", CommissionRate);
+               "gross sales", GrossSales, "commission rate", CommissionRate+"\n");
         } // end method ToString                                             
     } // end class CommissionEmployee
 /**************************************************************************
