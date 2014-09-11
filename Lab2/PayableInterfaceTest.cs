@@ -26,17 +26,7 @@ namespace Lab2
                 {
                     case 1: // Sort by social security number in ascending order
                         // Implemented through sorting algorithm using delegate
-                        Employee[] employeeArray = new Employee[8];
-                        for (int i = 0; i < payableObjects.Length; i++)
-					    { 
-						    employeeArray[i] = (Employee) payableObjects[i];
-					    }
-
-					    //BubbleSort.sort(employeeArray, Employee.CompareStringAscending);
-					    foreach ( var person in employeeArray )
-					    {
-						    Console.WriteLine(person + "\n");
-					    } // end foreach
+                        sortSocialSecurityNumberAscend(payableObjects);
 					break;
 
                     case 2: // Sort by last name in descending order
@@ -108,6 +98,21 @@ namespace Lab2
             }
             return number;
         }
+
+        public static void sortSocialSecurityNumberAscend(IPayable[] people)
+        {
+            Employee[] employeeArray = new Employee[8];
+            for (int i = 0; i < people.Length; i++)
+            {
+                employeeArray[i] = (Employee)people[i];
+            }
+
+            //BubbleSort.sort(employeeArray, Employee.CompareStringAscending);
+            foreach (var person in employeeArray)
+            {
+                Console.WriteLine(person + "\n");
+            }
+        } // end sortSocialSecurityNumberAscend
 
     } // end class PayableInterfaceTest
 }
