@@ -39,11 +39,7 @@ namespace Lab2
                         break;
                     case 4: // Sort by pay amount in descending order
                         // Implemented through IComparer interface
-                        Array.Sort(payableObjects,Employee.sortPayAmountDescending());
-                        Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
-
-                         foreach(var currentPayable in payableObjects)
-                            Console.WriteLine(currentPayable);
+                        sortPayAmountDescending(payableObjects);
                         break;
                     case 5: // Exit the program
                         Console.WriteLine("Program teminated normally.");
@@ -124,6 +120,14 @@ namespace Lab2
                 Console.WriteLine(currentPayable);
         }
 
+        public static void sortPayAmountDescending(IPayable[] people)
+        {
+            Array.Sort(people, Employee.sortPayAmountDescending());
+            Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
+
+            foreach (var currentPayable in people)
+                Console.WriteLine(currentPayable);
+        }
 
     } // end class PayableInterfaceTest
 }
