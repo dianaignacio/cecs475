@@ -27,15 +27,11 @@ namespace Lab2
                     case 1: // Sort by social security number in ascending order
                         // Implemented through sorting algorithm using delegate
                         sortSocialSecurityNumberAscend(payableObjects);
-					break;
+					    break;
 
                     case 2: // Sort by last name in descending order
                         // Implemented through IComparable interface
-                        Array.Sort(payableObjects);
-                        Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
-
-                         foreach(var currentPayable in payableObjects)
-                            Console.WriteLine(currentPayable);
+                        sortLastNameDescending(payableObjects);
                         break;
                     case 3: // Sort by pay amount in ascending  order
                         // Implemented through IComparer interface
@@ -113,6 +109,16 @@ namespace Lab2
                 Console.WriteLine(person + "\n");
             }
         } // end sortSocialSecurityNumberAscend
+
+        public static void sortLastNameDescending(IPayable[] people)
+        {
+            Array.Sort(people);
+            Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
+
+            foreach (var currentPayable in people)
+                Console.WriteLine(currentPayable);
+        }
+
 
     } // end class PayableInterfaceTest
 }
