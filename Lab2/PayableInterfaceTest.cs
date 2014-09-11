@@ -35,11 +35,7 @@ namespace Lab2
                         break;
                     case 3: // Sort by pay amount in ascending  order
                         // Implemented through IComparer interface
-                        Array.Sort(payableObjects,Employee.sortPayAmountAscending());
-                        Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
-
-                         foreach(var currentPayable in payableObjects)
-                            Console.WriteLine(currentPayable);
+                        sortPayAmountAscending(payableObjects);
                         break;
                     case 4: // Sort by pay amount in descending order
                         // Implemented through IComparer interface
@@ -113,6 +109,15 @@ namespace Lab2
         public static void sortLastNameDescending(IPayable[] people)
         {
             Array.Sort(people);
+            Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
+
+            foreach (var currentPayable in people)
+                Console.WriteLine(currentPayable);
+        }
+
+        public static void sortPayAmountAscending(IPayable[] people)
+        {
+            Array.Sort(people, Employee.sortPayAmountAscending());
             Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
 
             foreach (var currentPayable in people)
