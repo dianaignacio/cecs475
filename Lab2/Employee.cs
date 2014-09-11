@@ -46,7 +46,7 @@ using System.Collections;
         // return string representation of Employee object, using properties
         public override string ToString()
         {
-            return string.Format("{0} {1}\nsocial security number: {2}",
+            return string.Format("{0} {1}\nsocial security number: {2}\n",
                FirstName, LastName, SocialSecurityNumber);
         } // end method ToString
 
@@ -117,27 +117,10 @@ using System.Collections;
             }
         }
 
-        private class sortLastNameDescendingHelper : IComparer
-        {
-            int IComparer.Compare(object a, object b)
-            {
-                Employee e1 = (Employee)a;
-                Employee e2 = (Employee)b;
-                return String.Compare(e2.LastName, e1.LastName);
-            }
-        }
-
-
         // Method to return IComparer object for sort helper.
         public static IComparer sortPayAmountDescending()
         {
             return (IComparer)new sortPayAmountDescendingHelper();
-        }
-
-        // Method to return IComparer object for sort helper.
-        public static IComparer sortLastNameDescending()
-        {
-            return (IComparer)new sortLastNameDescendingHelper();
         }
     } // end abstract class Employee
 

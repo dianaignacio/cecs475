@@ -28,7 +28,7 @@ namespace Lab2
                         // Implemented through sorting algorithm using delegate
                         Employee[] employeeArray = new Employee[8];
                         for (int i = 0; i < payableObjects.Length; i++)
-					    {  // Convert our payableObjects into an array of Employees!
+					    { 
 						    employeeArray[i] = (Employee) payableObjects[i];
 					    }
 
@@ -38,13 +38,14 @@ namespace Lab2
 						    Console.WriteLine(person + "\n");
 					    } // end foreach
 					break;
+
                     case 2: // Sort by last name in descending order
                         // Implemented through IComparable interface
                         Array.Sort(payableObjects);
                         Console.WriteLine("\nArray - Sorted by Last Name (Descending - IComparable)\n");
 
                          foreach(var currentPayable in payableObjects)
-                            Console.WriteLine(currentPayable+"\n");
+                            Console.WriteLine(currentPayable);
                         break;
                     case 3: // Sort by pay amount in ascending  order
                         // Implemented through IComparer interface
@@ -83,14 +84,14 @@ namespace Lab2
         public static int getMenuOption()
         {
             int menuOption;
-            Console.WriteLine("Please select a sorting option");
+            Console.WriteLine("\nPlease select a sorting option");
             Console.WriteLine("1. Sort by social security number in ascending order");
             Console.WriteLine("2. Sort by last name in descending order");
             Console.WriteLine("3. Sort by pay amount in ascending  order");
             Console.WriteLine("4. Sort by pay amount in descending order");
             Console.WriteLine("5. Exit the program.");
 
-            menuOption = optionCheck("Enter a menu option: ", 1, 5);
+            menuOption = optionCheck("\nEnter a menu option: ", 1, 5);
 
             return menuOption;
         }  // end method getMenuOption
@@ -107,6 +108,7 @@ namespace Lab2
             }
             return number;
         }
+
     } // end class PayableInterfaceTest
 }
 /**************************************************************************

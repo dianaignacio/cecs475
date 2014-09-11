@@ -34,7 +34,7 @@ public class BasePlusCommissionEmployee: CommissionEmployee
         // calculate earnings; override method Earnings in CommissionEmployee
         public override decimal GetPaymentAmount()
         {
-            return BaseSalary + GetPaymentAmount();
+            return BaseSalary + base.GetPaymentAmount();
         } // end method Earnings               
 
         // return string representation of BasePlusCommissionEmployee object
