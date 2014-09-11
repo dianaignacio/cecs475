@@ -1,9 +1,13 @@
 ﻿// Fig. 12.11: IPayable.cs
 // IPayable interface declaration.
+using System;
+using System.Collections;
+
 public interface IPayable
 {
    decimal GetPaymentAmount(); // calculate payment; no implementation
 } // end interface IPayable
+
 
 /**************************************************************************
  * (C) Copyright 1992-2009 by Deitel & Associates, Inc. and               *

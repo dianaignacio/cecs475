@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePlusCommissionEmployee.cs" />
+    <Compile Include="BubbleSort.cs" />
     <Compile Include="CommissionEmployee.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="HourlyEmployee.cs" />
