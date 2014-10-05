@@ -23,7 +23,7 @@ namespace Lab4a
             invoices[6] = new Invoice(56, "Jig saw", 21, 11.00M);
             invoices[7] = new Invoice(3, "Wrench", 34, 7.50M);
 
-            // Use LINQ to sort the Invoice objects by PartDescription
+            // a. Use LINQ to sort the Invoice objects by PartDescription
             var partDescriptionSort =
                 from parts in invoices
                 orderby parts.PartDescription
@@ -33,7 +33,7 @@ namespace Lab4a
             foreach(var i in partDescriptionSort)
                 Console.WriteLine(i.ToString());
 
-            // Use LINQ to sort the Invoice objects by price
+            // b. Use LINQ to sort the Invoice objects by price
             var priceSort =
                 from parts in invoices
                 orderby parts.Price
@@ -43,7 +43,7 @@ namespace Lab4a
             foreach (var i in priceSort)
                 Console.WriteLine(i.ToString());
 
-            // Use LINQ to select the PartDescription and Quantity 
+            // c. Use LINQ to select the PartDescription and Quantity 
             // and sort the results by Quantity
             var quantitySort =
                 from parts in invoices
@@ -52,6 +52,18 @@ namespace Lab4a
 
             Console.WriteLine("\nSelected PartDescription and Quantity, sorted by quantity");
             foreach (var i in quantitySort)
+                Console.WriteLine(i.ToString());
+
+            // d. Use LINQ to select from each Invoice the PartDescription 
+            // and the value of the Invoice
+            var invoiceTotalSortedByValue =
+                from parts in invoices
+                let invoiceTotal = (parts.Quantity * parts.Price)
+                orderby invoiceTotal
+                select new { parts.PartDescription, invoiceTotal };
+
+            Console.WriteLine("\nSelected PartDescription and value, sorted by value");
+            foreach (var i in invoiceTotalSortedByValue)
                 Console.WriteLine(i.ToString());
         }
     }
