@@ -65,6 +65,19 @@ namespace Lab4a
             Console.WriteLine("\nSelected PartDescription and value, sorted by value");
             foreach (var i in invoiceTotalSortedByValue)
                 Console.WriteLine(i.ToString());
+            
+            // e. Using the results of the LINQ query in Part d, select the 
+            // InvoiceTotals in the range $200 to $500.
+            var invoiceTotalBetween200to500 =
+                from parts in invoiceTotalSortedByValue
+                where parts.invoiceTotal > 200.00M && parts.invoiceTotal < 500.00M
+                orderby parts.invoiceTotal
+                select new { parts.PartDescription, parts.invoiceTotal };
+
+            Console.WriteLine("\nSelected InvoiceTotals in the range of $200 to $500");
+            foreach (var i in invoiceTotalBetween200to500)
+                Console.WriteLine(i.ToString());
+
         }
     }
 }
