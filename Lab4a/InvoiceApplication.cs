@@ -42,6 +42,17 @@ namespace Lab4a
             Console.WriteLine("\nInvoices sorted by price");
             foreach (var i in priceSort)
                 Console.WriteLine(i.ToString());
+
+            // Use LINQ to select the PartDescription and Quantity 
+            // and sort the results by Quantity
+            var quantitySort =
+                from parts in invoices
+                orderby parts.Quantity
+                select new { parts.PartDescription, parts.Quantity };
+
+            Console.WriteLine("\nSelected PartDescription and Quantity, sorted by quantity");
+            foreach (var i in quantitySort)
+                Console.WriteLine(i.ToString());
         }
     }
 }
